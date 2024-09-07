@@ -9,10 +9,16 @@
                 <div class="message__date">2 minutes ago</div>
             </div>
             <div class="message__content">
-                <div class="message__file" v-if="isWithFile">
+                <div class="message__file" v-if="true">
                     <div class="file">
-                        <div class="file__container">
-                            <v-icon name="file" width="46px" height="49px"></v-icon>
+                        <div class="file__main">
+                            <div class="file__container">
+                                <v-icon name="file" width="46px" height="49px"></v-icon>
+                            </div>
+                            <div class="file__buttons">
+                                <button class="file__button" type="button">Скачать</button>
+                                <button class="file__button" type="button">Посмотреть</button>
+                            </div>
                         </div>
                         <div class="file__name">Document.docx</div>
                     </div>
@@ -126,6 +132,10 @@
                 justify-content: flex-end;
                 align-items: flex-end;
             }
+
+            .file__main {
+                flex-direction: row-reverse;   
+            }
         }
     }
 
@@ -134,6 +144,35 @@
         flex-direction: column;
         gap: .5rem;
         margin-bottom: 1rem;
+
+        &__main {
+            display: flex;
+            align-items: flex-end;
+            gap: 1rem;
+        }
+
+        &__buttons {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+        }
+
+        &__button {
+            border: none;
+            background: #FF5E54;
+            border-radius: .5rem;
+            cursor: pointer;
+            
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 1.6rem;
+
+            // padding: .9rem 1rem;
+
+            height: 3.75rem;
+
+            color: #fff;
+        }
 
         &__container {
             display: flex;
