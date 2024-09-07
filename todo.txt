@@ -1,0 +1,23 @@
+TODO:
+
+    Message Send - DONE,
+
+    Message Delete,
+
+    Scroll to bottom,
+    
+    File Reader,
+    
+    File Viewer,
+
+    Tips,
+
+    Locales,
+
+    Add firebase for sending messages,
+
+    Add normal security rules,
+ 
+    Account edit,
+
+    Rooms

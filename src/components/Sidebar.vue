@@ -1,9 +1,11 @@
 <template>
     <aside class="sidebar">
-        <!-- <div class="sidebar__inner"> <header class="sidebar__header">
+        <!-- <div class="sidebar__inner"> -->
+
+            <header class="sidebar__header">
                 Simple Chat
-            </header> -->
-            
+            </header>
+
             <main class="sidebar__content">
                 
                 <tip></tip>

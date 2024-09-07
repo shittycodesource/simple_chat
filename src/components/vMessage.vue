@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="message__text">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, exercitationem. Ducimus nihil recusandae assumenda! Voluptates alias debitis fugiat, accusantium quas aut ullam voluptatibus pariatur libero, ex voluptatum! Id placeat soluta suscipit voluptatibus? Quas numquam molestiae hic quia deleniti? Ullam earum aliquam incidunt laboriosam labore dolores obcaecati quaerat, id eligendi officiis?
+                    {{ data.text }}
                 </div>
             </div>
         </div>
@@ -26,11 +26,15 @@
     import vIcon from './vIcon.vue';
 
     export default {
-        name: "Message",
+        name: "vMessage",
         components: {
             vIcon
         },
         props: {
+            data: {
+                type: Object,
+                default: false
+            },
             isGray: {
                 type: Boolean,
                 default: false 
@@ -80,6 +84,8 @@
         &__text {
             font-size: 1.6rem;
             line-height: 2.5rem;
+
+            white-space: pre;
         }
 
 

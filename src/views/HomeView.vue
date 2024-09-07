@@ -4,22 +4,9 @@
         <sidebar></sidebar>
 
         <main class="view">
-            <div class="view__content">
-                
-                <message 
-                    v-for="i in [0,1,2,3,4,5,6,7,8,9]"
-                    :isGray="i % 2 == 0"
-                    :isWithFile="i % 4 == 0"
-                    :isMine="i % 3 == 0"
-                    :key="i"
-                ></message>
-
-
-            </div>
-
-            <footer class="view__footer">
-                <v-field></v-field>
-            </footer>
+            
+            <v-chat></v-chat>
+            
         </main>
 
     </div>
@@ -27,15 +14,13 @@
 
 <script>
     import Sidebar from '../components/Sidebar.vue';
-    import Message from '../components/Message.vue';
-    import vField from '../components/vField.vue';
+    import vChat from '../components/vChat.vue';
 
     export default {
         name: 'HomeView',
         components: {
             Sidebar,
-            Message,
-            vField
+            vChat
         }
 
     }
