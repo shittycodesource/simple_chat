@@ -1,32 +1,43 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
+    <v-sprites></v-sprites>
+
     <router-view/>
   </div>
 </template>
 
+<script>
+import vSprites from './components/vSprites.vue';
+
+export default {
+  name: "App",
+  components: { vSprites }
+}
+</script>
+
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+
+html {
+  font-size: 62.5%;
 }
 
-nav {
-  padding: 30px;
+body {
+  font-size: 1.6rem;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  padding: 0px;
+  margin: 0px;
+  
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+*,*::before,*::after {
+  box-sizing: border-box;
+}
+
+#app {
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #000;
 }
 </style>
