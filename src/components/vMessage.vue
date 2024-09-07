@@ -4,7 +4,10 @@
             <img src="https://loremflickr.com/600/600">
         </div>
         <div class="message__main">
-            <div class="message__user">Username</div>
+            <div class="message__header">
+                <div class="message__user">Username</div>
+                <div class="message__date">2 minutes ago</div>
+            </div>
             <div class="message__content">
                 <div class="message__file" v-if="isWithFile">
                     <div class="file">
@@ -80,6 +83,16 @@
             font-weight: 700;
         }
 
+        &__header {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        &__date {
+            opacity: .5;
+        }
+
 
         &__text {
             font-size: 1.6rem;
@@ -98,12 +111,16 @@
             //border: 1px solid #E2E2E2;
             
             background: #F5FAFF;
-            border: 1px solid #D6E9FF;
+            border: .1rem solid #D6E9FF;
         }
 
         &--mine {
             flex-direction: row-reverse;   
             text-align: right;
+
+            .message__header {
+                flex-direction: row-reverse;   
+            }
 
             .file {
                 justify-content: flex-end;
@@ -115,18 +132,18 @@
     .file {
         display: flex;
         flex-direction: column;
-        gap: 5px;
-        margin-bottom: 10px;
+        gap: .5rem;
+        margin-bottom: 1rem;
 
         &__container {
             display: flex;
             align-items: center;
             justify-content: center;
 
-            width: 80px;
-            height: 80px;
+            width: 8rem;
+            height: 8rem;
 
-            border-radius: 10px;
+            border-radius: 1rem;
 
             background: linear-gradient(to bottom, #FF8B84, #FF5E54);
         }
