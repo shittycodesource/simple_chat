@@ -6,7 +6,7 @@
         <div class="message__main">
             <div class="message__header">
                 <div class="message__user">Username</div>
-                <div class="message__date">2 minutes ago</div>
+                <div class="message__date">{{ data.createdAt | date(false) }}</div>
             </div>
             <div class="message__content">
                 <div class="message__file" v-if="true">

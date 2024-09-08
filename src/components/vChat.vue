@@ -33,14 +33,14 @@
         data() {
             return {
                 messages: [
-                    { userId: 4, text: "Hello everybody", files: [ { name: "Presentation", file: null } ], id: 1 }, 
-                    { userId: 12, text: "Hello everybody", files: [ { name: "", file: null } ], id: 2 }, 
-                    { userId: 2, text: "Hello everybody", files: [ { name: "", file: null } ], id: 3 }, 
-                    { userId: 5, text: "Hello everybody", files: [ { name: "", file: null } ], id: 4 }, 
-                    { userId: 4, text: "Hello everybody", files: [ { name: "", file: null } ], id: 5 }, 
-                    { userId: 7, text: "Hello everybody", files: [ { name: "", file: null } ], id: 6 }, 
-                    { userId: 4, text: "Hello everybody", files: [ { name: "", file: null } ], id: 7 }, 
-                    { userId: 4, text: "Hello everybody", files: [ { name: "", file: null } ], id: 8 }, 
+                    { userId: 4, text: "Hello everybody", files: [ { name: "Presentation", file: null } ], id: 1, createdAt: 1125757090611 }, 
+                    { userId: 12, text: "Hello everybody", files: [ { name: "", file: null } ], id: 2, createdAt: 1725757090611 }, 
+                    { userId: 2, text: "Hello everybody", files: [ { name: "", file: null } ], id: 3, createdAt: 1725757090611 }, 
+                    { userId: 5, text: "Hello everybody", files: [ { name: "", file: null } ], id: 4, createdAt: 1725757090611 }, 
+                    { userId: 4, text: "Hello everybody", files: [ { name: "", file: null } ], id: 5, createdAt: 1725757090611 }, 
+                    { userId: 7, text: "Hello everybody", files: [ { name: "", file: null } ], id: 6, createdAt: 1725757090611 }, 
+                    { userId: 4, text: "Hello everybody", files: [ { name: "", file: null } ], id: 7, createdAt: 1725757090611 }, 
+                    { userId: 4, text: "Hello everybody", files: [ { name: "", file: null } ], id: 8, createdAt: 1725757090611 }, 
                 ]
             }
         },
@@ -48,6 +48,7 @@
             appendMessage(data) {
                 data.id = Date.now();
                 data.userId = Date.now();
+                data.createdAt = Date.now();
 
                 this.messages.push(data);
 
@@ -55,6 +56,9 @@
                     this.$refs.content.scrollTo({ top: this.$refs.content.scrollHeight, left: 0, behavior: "smooth" });
                 }, 0)
             }
+        },
+        mounted() {
+            this.$refs.content.scrollTo({ top: this.$refs.content.scrollHeight, left: 0 });
         }
     }
 </script>
