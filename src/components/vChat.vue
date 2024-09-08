@@ -17,7 +17,7 @@
         </div>
 
         <footer class="chat__footer">
-            <v-field @send="appendMessage"></v-field>
+            <v-field @send="appendMessage" @removeFile="file => $emit('removeFile', file)"></v-field>
         </footer>
     </div>
 </template>
@@ -35,14 +35,14 @@
         data() {
             return {
                 messages: [
-                    { userId: 4, text: "Hello everybody", files: [ { name: "Presentation", file: null } ], id: 1, createdAt: 1125757090611 }, 
-                    { userId: 12, text: "Hello everybody", files: [ { name: "", file: null } ], id: 2, createdAt: 1725757090611 }, 
-                    { userId: 2, text: "Hello everybody", files: [ { name: "", file: null } ], id: 3, createdAt: 1725757090611 }, 
-                    { userId: 5, text: "Hello everybody", files: [ { name: "", file: null } ], id: 4, createdAt: 1725757090611 }, 
-                    { userId: 4, text: "Hello everybody", files: [ { name: "", file: null } ], id: 5, createdAt: 1725757090611 }, 
-                    { userId: 7, text: "Hello everybody", files: [ { name: "", file: null } ], id: 6, createdAt: 1725757090611 }, 
-                    { userId: 4, text: "Hello everybody", files: [ { name: "", file: null } ], id: 7, createdAt: 1725757090611 }, 
-                    { userId: 4, text: "Hello everybody", files: [ { name: "", file: null } ], id: 8, createdAt: 1725757090611 }, 
+                    { userId: 4, text: "Hello everybody", files: [], id: 1, createdAt: 1125757090611 }, 
+                    { userId: 12, text: "Hello everybody", files: [], id: 2, createdAt: 1725757090611 }, 
+                    { userId: 2, text: "Hello everybody", files: [], id: 3, createdAt: 1725757090611 }, 
+                    { userId: 5, text: "Hello everybody", files: [], id: 4, createdAt: 1725757090611 }, 
+                    { userId: 4, text: "Hello everybody", files: [], id: 5, createdAt: 1725757090611 }, 
+                    { userId: 7, text: "Hello everybody", files: [], id: 6, createdAt: 1725757090611 }, 
+                    { userId: 4, text: "Hello everybody", files: [], id: 7, createdAt: 1725757090611 }, 
+                    { userId: 4, text: "Hello everybody", files: [], id: 8, createdAt: 1725757090611 }, 
                 ]
             }
         },

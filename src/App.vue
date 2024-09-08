@@ -1,17 +1,65 @@
 <template>
-  <div id="app">
+  <div id="app"
+      @drop.prevent="drop" 
+      @dragstart.prevent
+      @dragenter.prevent="isDragActive = true"
+      @dragover.prevent
+      @dragleave.prevent.self="isDragActive = false"
+      @dragend.prevent
+  >
     <v-sprites></v-sprites>
 
-    <router-view/>
+    <router-view
+      @removeFile="removeFile"
+    />
+
+    <!-- <v-doc-overlay></v-doc-overlay> -->
+
+
+    <v-drop-overlay :isDragActive="isDragActive" v-if="isDragActive"></v-drop-overlay>
+    <v-file-reader ref="input" @emitFiles="setFiles" :filesArray="files"></v-file-reader>
   </div>
 </template>
 
 <script>
 import vSprites from './components/vSprites.vue';
+import vDropOverlay from './components/vDropOverlay.vue';
+import vFileReader from './components/vFileReader.vue';
+import vDocOverlay from './components/vDocOverlay.vue';
+
+import { mapActions } from "vuex";
 
 export default {
   name: "App",
-  components: { vSprites }
+  components: { vSprites, vDropOverlay, vFileReader, vDocOverlay },
+  data() {
+    return {
+      isDragActive: false,
+      files: [],
+    }
+  },
+  methods: {
+    ...mapActions(['setFilesToStore']),
+    drop(event) {
+      console.log(this.$refs)
+      console.log(this.$refs.input)
+      console.log(this.$refs.input.$refs)
+      console.log(this.$refs.input.$refs.fileInput)
+      console.log(this.$refs.input.$refs.fileInput.$children)
+				this.$refs.input.onChange(event);
+        this.isDragActive = false;
+    },
+
+    setFiles(value) {
+      this.files = value;
+      this.setFilesToStore(value);
+    },
+
+    removeFile(file) {
+      this.files.splice(this.files.indexOf(file), 1);
+      this.setFilesToStore(this.files);
+    }
+  }
 }
 </script>
 

@@ -9,20 +9,22 @@
                 <div class="message__date">{{ data.createdAt | date(false) }}</div>
             </div>
             <div class="message__content">
-                <div class="message__file" v-if="true">
-                    <div class="file">
+                <div class="message__file" v-if="data.files.length">
+
+                    <div class="file" v-for="(file, index) in data.files" :key="index">
                         <div class="file__main">
                             <div class="file__container">
                                 <v-icon name="file" width="46px" height="49px"></v-icon>
                             </div>
                             <div class="file__buttons">
                                 <button class="file__button" type="button">Скачать</button>
-                                <button class="file__button" type="button">Посмотреть</button>
+                                <!-- <button class="file__button" type="button" v-if="file.type == 'application/msword'" @click="openFile(data)">Посмотреть</button> -->
                             </div>
                         </div>
-                        <div class="file__name">Document.docx</div>
+                        <div class="file__name">{{ file.name }}</div>
                     </div>
                 </div>
+
                 <div class="message__text">
                     {{ data.text }}
                 </div>
@@ -38,6 +40,8 @@
 
 <script>
     import vIcon from './vIcon.vue';
+
+    import { mapActions } from 'vuex';
 
     export default {
         name: "vMessage",
@@ -61,6 +65,9 @@
                 type: Boolean,
                 default: false 
             }
+        },
+        methods: {
+            ...mapActions(['openFile'])
         }
     }
 </script>
@@ -77,6 +84,12 @@
         padding: 1.5rem;
 
         position: relative;
+
+        &__file {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
         &__avatar {
             img {

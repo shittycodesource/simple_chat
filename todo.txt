@@ -4,9 +4,9 @@ TODO:
 
     Message Date - DONE
 
-    Message Delete,
+    Message Delete - DONE,
 
-    Scroll to bottom,
+    Scroll to bottom - DONE,
     
     File Reader,
     

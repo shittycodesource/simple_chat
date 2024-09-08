@@ -5,9 +5,10 @@
 
         <main class="view">
             
-            <v-chat></v-chat>
+            <v-chat @removeFile="file => $emit('removeFile', file)"></v-chat>
             
         </main>
+       
 
     </div>
 </template>
@@ -20,7 +21,7 @@
         name: 'HomeView',
         components: {
             Sidebar,
-            vChat
+            vChat,
         }
 
     }

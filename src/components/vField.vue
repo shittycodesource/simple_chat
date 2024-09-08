@@ -1,42 +1,48 @@
 <template>
     <div class="field" :class="{ 'field--shadow': lineCount > 3 }" :key="rerenderKey">
-        <button class="field__file" type="button">
-            <v-icon name="file add" width="18px" height="24px"></v-icon>
-        </button>
+        <v-files-container v-if="getFiles.length" @removeFile="value => $emit('removeFile', value)"></v-files-container>
         
-        <div class="field__input" :class="{ 'field__input--focus': isFocus }">
-            <textarea 
-                v-textarea
-                type="text" 
-                @focus="isFocus = true" 
-                @blur="isFocus = false" 
-                placeholder="Текст..."
+        <div class="field__main">
+            <button class="field__file" type="button">
+                <v-icon name="file add" width="18px" height="24px"></v-icon>
+            </button>
+            
+            <div class="field__input" :class="{ 'field__input--focus': isFocus }">
+                <textarea 
+                    v-textarea
+                    type="text" 
+                    @focus="isFocus = true" 
+                    @blur="isFocus = false" 
+                    placeholder="Текст..."
 
-                maxlength="512"
+                    maxlength="512"
 
-                :value="text"
-                @input="onInput"
-            ></textarea>
+                    :value="text"
+                    @input="onInput"
+                ></textarea>
+            </div>
+            
+            <button class="field__send" type="button" @click="send">
+                <v-icon name="send" width="21px" height="21px"></v-icon>
+            </button>
         </div>
-        
-        <button class="field__send" type="button" @click="send">
-            <v-icon name="send" width="21px" height="21px"></v-icon>
-        </button>
     </div>
 </template>
 
 <script>
     import vIcon from './vIcon.vue';
+    import vFilesContainer from './vFilesContainer.vue';
+
+    import { mapGetters, mapActions } from 'vuex';
 
     export default {
         name: "vInput",
-        components: { vIcon },
+        components: { vIcon, vFilesContainer },
         data() {
             return {
                 isFocus: false,
                 text: '',
-                files: [],
-
+ 
                 maxLines: 32,
                 maxLength: 512,
                 minLength: 0,
@@ -45,7 +51,7 @@
             }
         },
         methods: {
-
+            ...mapActions(['clearStoreFiles']),
             onInput(event) {
 				if (!this.isMaxLines) {
 					this.text = event.target.value;
@@ -64,9 +70,10 @@
             send() {
                 const data = {
                     text: this.text,
-                    files: this.files
+                    files: this.getFiles
                 }
 
+                this.clearStoreFiles();
                 this.$emit('send', data);
 
                 this.text = '';
@@ -76,6 +83,7 @@
             }
         },
         computed: {
+            ...mapGetters(['getFiles']),
             lineCount() { return this.text.split('\n').length; },
             textLength() { return this.text.length; },
 			isMaxLines() { return this.lineCount >= this.maxLines; },
@@ -88,9 +96,17 @@
 <style lang="scss">
     .field {
         display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        gap: .8rem;
+        gap: 1.5rem;
+        flex-direction: column;
+
+
+        &__main {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: .8rem;
+            width: 100%;
+        }
 
         width: 100%;
          
