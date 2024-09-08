@@ -9,6 +9,8 @@
                 :isWithFile="data.file"
                 :isMine="data.userId == 4"
                 :key="data.id"
+
+                @delete="removeMessage"
             ></v-message>
 
 
@@ -53,8 +55,21 @@
                 this.messages.push(data);
 
                 setTimeout(() => {
-                    this.$refs.content.scrollTo({ top: this.$refs.content.scrollHeight, left: 0, behavior: "smooth" });
+
+                    const element = this.$refs.content;
+                    const index = (element.scrollTop + element.getBoundingClientRect().height) / element.scrollHeight;
+                    console.log(index)
+
+                    if (index > .85) {
+                        this.$refs.content.scrollTo({ top: this.$refs.content.scrollHeight, left: 0, behavior: "smooth" });
+                    }
+
                 }, 0)
+            },
+
+            removeMessage(id) {
+                const item = this.messages.filter(item => item.id == id);
+                this.messages.splice(this.messages.indexOf(item), 1);
             }
         },
         mounted() {

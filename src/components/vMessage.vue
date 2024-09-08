@@ -28,6 +28,11 @@
                 </div>
             </div>
         </div>
+        <div class="message__actions">
+            <button class="message__button" type="button" @click="$emit('delete', data.id)">
+                <v-icon name="trash" width="24px" height="24px"></v-icon>
+            </button>
+        </div>
     </div>
 </template>
 
@@ -71,6 +76,8 @@
 
         padding: 1.5rem;
 
+        position: relative;
+
         &__avatar {
             img {
                 width: 4.5rem;
@@ -104,12 +111,41 @@
             font-size: 1.6rem;
             line-height: 2.5rem;
 
-            white-space: pre;
+            white-space: pre-line;
+            word-break: break-all;
         }
 
 
+        &__actions {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+        }
 
+        &__button {
+            border: none;
+            background: #FF5E54;
+            border-radius: .5rem;
+            cursor: pointer;
+            
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 1.6rem;
 
+            padding: .6rem 1rem;
+
+            height: 3.75rem;
+
+            color: #fff;
+
+            transition: all .25s;
+            pointer-events: none;
+            opacity: 0;
+
+            &:hover {
+                transform: translateY(-3px);
+            }
+        }
 
 
         &--gray {
@@ -135,6 +171,19 @@
 
             .file__main {
                 flex-direction: row-reverse;   
+            }
+
+            .message__actions {
+                right: unset;
+                left: 1.5rem;
+            }
+
+        }
+
+        &:hover {
+            .message__button {
+                pointer-events: unset;
+                opacity: 1;
             }
         }
     }
